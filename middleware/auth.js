@@ -9,6 +9,7 @@ const authenticationMiddleware = async (req, res, next) => {
         const decoded = JWT.verify(token, process.env.JWT_SECERT);
         const { id, username } = decoded; 
         req.user = { id, username };
+        console.log(req.user);
         next();
     } catch (error) {
         throw new UnauthenticationError('Not authorized to access this route');
